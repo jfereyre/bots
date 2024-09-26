@@ -13,6 +13,12 @@ class CameraScanner(Thread):
         self.m_arucoParams = cv.aruco.DetectorParameters_create()
         self.m_tag_detection_callback = a_tag_detection_callback
         self.m_camera_id = a_camera_id
+        self.m_height = 0
+        self.m_width = 0
+
+    @property
+    def dimension(self):
+        return (self.m_width, self.m_height)
 
     def aruco_detector(self, frame):
         """
@@ -55,6 +61,7 @@ class CameraScanner(Thread):
         if not cap.isOpened():
             print("Cannot open camera")
             exit()
+
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
@@ -63,7 +70,10 @@ class CameraScanner(Thread):
             if not ret:
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
-            
+
+            self.m_width = cap.get(cv.CAP_PROP_FRAME_WIDTH)
+            self.m_height = cap.get(cv.CAP_PROP_FRAME_HEIGHT)
+
             self.aruco_detector(frame)
 
             # Display the resulting frame
