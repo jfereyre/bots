@@ -71,8 +71,6 @@ class CameraScanner(Thread):
                 print("Can't receive frame (stream end?). Exiting ...")
                 break
 
-            self.m_width = cap.get(cv.CAP_PROP_FRAME_WIDTH)
-            self.m_height = cap.get(cv.CAP_PROP_FRAME_HEIGHT)
 
             self.aruco_detector(frame)
 
