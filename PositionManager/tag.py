@@ -15,7 +15,6 @@ class Tag(Box, Subject):
     
     @location.setter
     def location(self, a_location: Box):
-        l_modified = False
         if not self == a_location:
             self.m_bottomLeft = a_location.m_bottomLeft
             self.m_bottomRight = a_location.m_bottomRight
