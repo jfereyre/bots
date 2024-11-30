@@ -1,0 +1,3 @@
+[submodule "pyPath"]
+	path = pyPath
+	url = git@github.com:jfereyre/pyPath.git
