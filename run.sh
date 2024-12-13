@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PYTHONPATH=$PYTHONPATH:`readlink -f pyPath` python3 ./test.py
+PYTHONPATH=$PYTHONPATH:`readlink -f PyPath` python3 ./bot.py
