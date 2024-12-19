@@ -10,14 +10,6 @@ from time import sleep
 from tkinter import Tk, Button
 from threading import Thread
 
-#g_ex = None
-#g_cells = None
-#
-#g_robot_start_position = (0,0)
-#g_robot_destination = (39,29)
-#
-#g_bot = Robot()
-
 class BotPathApp(object):
 
     def __init__(self):
@@ -58,11 +50,10 @@ class BotPathApp(object):
 
         root.mainloop()
 
-def tagDetectionPositionChangeCallback(a_tag_id: int, a_box: Box):
-    if a_tag_id == 47:
-        l_topLeftCell = g_ex.getNearestCell(a_box.topLeft[0], a_box.topLeft[1])
-        l_bottomRightCell = g_ex.getNearestCell(a_box.bottomRight[0], a_box.bottomRight[1])
-
-        for l_x in range(l_topLeftCell.col, l_bottomRightCell.col):
-            for l_y in range(l_topLeftCell.row, l_bottomRightCell.row):
-                g_cells.get(l_x, l_y).occupied()
+    @property
+    def cells(self):
+        return self._m_cells
+    
+    @property
+    def gameBoardUI(self):
+        return self._m_game_board_ui

@@ -5,16 +5,21 @@ import numpy as np
 import cv2 as cv
 from PositionManager.box import Box
 
+class DetectionCallback(object):
+
+    def call(self):
+        pass        
+
 class CameraScanner(Thread):
-    def __init__(self, a_camera_id: int = 1, a_tag_detection_callback = None):
+    def __init__(self, a_camera_id: int = 1):
         super(CameraScanner, self).__init__()
 
         self.m_arucoDict = cv.aruco.Dictionary_get(cv.aruco.DICT_4X4_50)
         self.m_arucoParams = cv.aruco.DetectorParameters_create()
-        self.m_tag_detection_callback = a_tag_detection_callback
         self.m_camera_id = a_camera_id
         self.m_height = 0
         self.m_width = 0
+        self._m_callbacks = {}
 
     @property
     def dimension(self):
@@ -50,10 +55,15 @@ class CameraScanner(Thread):
                     (l_box.topLeft[0], l_box.topLeft[1] - 15), cv.FONT_HERSHEY_SIMPLEX,
                     0.5, (0, 255, 0), 2)
             
-                if not self.m_tag_detection_callback:
-                    print("[INFO] ArUco marker ID: {}".format(markerID))
+                if markerID in self._m_callbacks.keys():
+                    self._m_callbacks[markerID].call(markerID, l_box)
                 else:
-                    self.m_tag_detection_callback(markerID, l_box)
+                    print("[INFO] ArUco marker ID: {}".format(markerID))
+
+    def registerCallbackForTag(self, a_markerID: int, a_callbak: DetectionCallback):
+        """
+        """
+        self._m_callbacks[a_markerID] = a_callbak
 
 
     def run(self):
