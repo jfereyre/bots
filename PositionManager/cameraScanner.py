@@ -1,7 +1,6 @@
 #!/bin/env python3
 
 from threading import Thread
-import numpy as np
 import cv2 as cv
 from PositionManager.box import Box
 

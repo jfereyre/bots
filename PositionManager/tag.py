@@ -1,6 +1,5 @@
 from PositionManager.box import Box
 from PositionManager.observerPattern import Subject
-from threading import Lock
 
 class Tag(Box, Subject):
     def __init__(self, a_id:int = -1):

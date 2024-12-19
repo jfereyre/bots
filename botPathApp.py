@@ -1,11 +1,7 @@
-from PositionManager.cameraScanner import CameraScanner
-from PositionManager.box import Box
 from PyPathUI.gameBoardUI import GameBoardUI
-from PyPath.aStar import AStar
 from PyPath.cell import CellMatrix
 from PyPath.robot import Robot, RobotNoMoreMoveException
 
-import yaml
 from time import sleep
 from tkinter import Tk, Button
 from threading import Thread

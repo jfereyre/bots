@@ -1,7 +1,6 @@
 from PositionManager.cameraScanner import CameraScanner, DetectionCallback
 from PositionManager.box import Box
 
-from PyPath.PyPathUI.gameBoardUI import GameBoardUI
 from botPathApp import BotPathApp
 
 import yaml
